@@ -48,4 +48,4 @@ function shoppingCart(actionString, item, cartArray=[]){
 
 }
 
-console.log(shoppingCart(actionString,item, cartArray))
+console.log(shoppingCart(actionString,item,cartArray))
