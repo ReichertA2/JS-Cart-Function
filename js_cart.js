@@ -8,7 +8,7 @@ let item={
         id: 0
     }
 
-let cartArray = []
+let cartArray = ['carrot','pear','apple','pear']
 
 function shoppingCart(actionString, item, cartArray=[]){
     let new_cartArray=cartArray.slice()
@@ -19,33 +19,35 @@ function shoppingCart(actionString, item, cartArray=[]){
             return new_cartArray ;
     
         case "remove_from_cart":
-            for(const item_in_cart of new_cartArray){
-                if (item_in_cart===item){
-                    new_cartArray.pop(item)
-                    return new_cartArray ;
-                }
+            
+            if (new_cartArray.includes(item)){
+                let itemIndex = new_cartArray.indexOf(item)
+                new_cartArray.splice(itemIndex,1)
+                
+                return new_cartArray ;
+            
             }
             return new_cartArray ;
         
         case "remove_all_from_cart":
-            for(const item_in_cart of new_cartArray){
-                if (item_in_cart===item){
-                    new_cartArray.pop(item)
+            let newCartWithout = []
+            for(let item_in_cart of new_cartArray){
+                if (item_in_cart!==item){
+                    newCartWithout.push(item_in_cart)
                 }
             }
-            return new_cartArray;
+            return newCartWithout;
 
         case "empty_cart":
-            for(const item_in_cart of new_cartArray){
-                    new_cartArray.pop(item)
-                }
+            new_cartArray = [];
+            
             return new_cartArray;
         
         default:
-            console.log("Invalid action")
+            console.log("Invalid action") 
             break;
     }
 
 }
 
-console.log(shoppingCart(actionString,item,cartArray))
+console.log(shoppingCart(actionString3,'pear',cartArray))
